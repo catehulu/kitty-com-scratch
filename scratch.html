@@ -34,6 +34,12 @@
         margin: auto;
         width: 50vh;
     }
+
+    .ticket-icon {
+        padding: 5px;
+        width: 25px;
+        height: 25px;
+    }
 </style>
 
 <body>
@@ -48,26 +54,31 @@
         {
             'id': 'pog',
             'text': 'Pog',
+            'image': 'scratch/public/pog.png',
             'count': 3
         },
         {
             'id': 'seemsgood',
             'text': 'SeemsGood',
+            'image': 'scratch/public/seemsgood.png',
             'count': 3
         },
         {
             'id': 'kappa',
             'text': 'Kappa',
+            'image': 'scratch/public/kappa.png',
             'count': 3
         },
         {
             'id': 'omegalul',
             'text': 'OMEGALUL',
+            'image': 'scratch/public/omegalul.png',
             'count': 3
         },
         {
             'id': 'ayaya',
             'text': 'Fucking VTuber shit man',
+            'image': 'scratch/public/ayaya.png',
             'count': 3
         },
     ]
@@ -98,9 +109,17 @@
         var currReward = reward[random];
 
         currReward.count--;
-        console.log(currReward)
         element.className = newClassName;
-        element.innerHTML = currReward.id;
+        
+        if (currReward.image == null) {
+            element.innerHTML = currReward.id;
+        } else {
+            var ticketImg = document.createElement('img');
+            ticketImg.setAttribute('src',currReward.image);
+            ticketImg.className = 'ticket-icon'
+            element.appendChild(ticketImg);
+        }
+
         if (!currReward.count) {
             cleanup()
             var text = document.createElement('h1');
